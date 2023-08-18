@@ -1,4 +1,3 @@
-C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\appsettings.json
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\bookAPI.exe
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\bookAPI.deps.json
@@ -14,7 +13,6 @@ C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.E
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
@@ -30,7 +28,6 @@ C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Swashbuckle
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\System.Runtime.Caching.dll
@@ -64,3 +61,4 @@ C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\obj\Debug\net6.0\bookAPI.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\obj\Debug\net6.0\ref\bookAPI.dll
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\obj\Debug\net6.0\bookAPI.pdb
 C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\obj\Debug\net6.0\bookAPI.genruntimeconfig.cache
+C:\Users\Sven\Desktop\2DAW\aa2dwes\dwes-aa2\bookAPI\bin\Debug\net6.0\nlog.config
