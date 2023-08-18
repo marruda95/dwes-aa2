@@ -1,4 +1,4 @@
-﻿namespace bookAPI._1_Domain.Models{
+﻿namespace bookAPI.Domain.Models{
     public class UserInputModel
     {
         public int Id { get; set; }

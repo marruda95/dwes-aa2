@@ -1,7 +1,6 @@
-﻿using bookAPI._1_Domain.Models;
-using bookAPI._2_Infrastructure.Models;
+﻿using bookAPI.Infrastructure.Models;
 
-namespace bookAPI._2_Infrastructure.Database.Data
+namespace bookAPI.Infrastructure.Database.Data
 {
     public interface IDataBaseService
     {

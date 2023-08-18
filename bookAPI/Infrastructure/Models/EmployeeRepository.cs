@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace bookAPI._2_Infrastructure.Models
+namespace bookAPI.Infrastructure.Models
 {
     public class EmployeeRepository
     {

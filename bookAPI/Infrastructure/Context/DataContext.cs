@@ -1,8 +1,8 @@
 
-using bookAPI._2_Infrastructure.Models;
+using bookAPI.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace bookAPI
+namespace bookAPI.Infrastructre.Context
 {
     public class DataContext : DbContext
     {

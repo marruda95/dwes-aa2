@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using bookAPI._1_Domain.Models;
-using bookAPI._2_Infrastructure.Services;
-using bookAPI._2_Infrastructure.Models;
+using bookAPI.Domain.Models;
+using bookAPI.Infrastructure.Services;
+using bookAPI.Infrastructure.Models;
 
-namespace bookAPI._1_Domain.Controllers
+namespace bookAPI.Domain.Controllers
 {
 
     //add-migration migration1

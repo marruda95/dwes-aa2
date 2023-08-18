@@ -1,7 +1,7 @@
 
-using bookAPI._2_Infrastructure.Models;
+using bookAPI.Infrastructure.Models;
 
-namespace bookAPI._2_Infrastructure.Services
+namespace bookAPI.Infrastructure.Services
 {
     public interface IEmployeeService
     {

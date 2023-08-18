@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using bookAPI._1_Domain.Models;
-namespace bookAPI._2_Infrastructure.Models
+using bookAPI.Domain.Models;
+namespace bookAPI.Infrastructure.Models
 {
     public class BookRepository
     {

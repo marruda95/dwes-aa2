@@ -1,6 +1,6 @@
-﻿using bookAPI._1_Domain.Models;
+﻿using bookAPI.Domain.Models;
 
-namespace bookAPI._2_Infrastructure.Contracts
+namespace bookAPI.Infrastructure.Contracts
 {
     public interface IEmployeeRepository
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using bookAPI._1_Domain.Models;
+using bookAPI.Domain.Models;
 
-namespace bookAPI._2_Infrastructure.Models
+namespace bookAPI.Infrastructure.Models
 {
     public class UserRepository
     {

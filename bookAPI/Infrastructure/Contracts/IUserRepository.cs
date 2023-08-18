@@ -1,5 +1,5 @@
-﻿using bookAPI._1_Domain.Models;
-using bookAPI._2_Infrastructure.Models;
+﻿using bookAPI.Domain.Models;
+using bookAPI.Infrastructure.Models;
 
 namespace bookAPI._2_Infrastructure.Contracts
 {
