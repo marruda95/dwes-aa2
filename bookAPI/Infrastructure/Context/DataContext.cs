@@ -11,5 +11,6 @@ namespace bookAPI.Infrastructre.Context
         public DbSet<EmployeeRepository>? Employees { get; set; }
         public DbSet<UserRepository>? Users { get; set; }
         public DbSet<BookRepository>? Books { get; set; }
+        public DbSet<OrderRepository>? Orders { get; set; }
     }
 }

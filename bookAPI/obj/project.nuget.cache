@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YKS3WKB4jYVOqyCbMh1YtmBNIQmMMI3F9SxNW0D5pbJasA3bzD6zwAfZGd6cSKLhmMpi1MoTwxlHzAAytAdZuQ==",
+  "dgSpecHash": "EkWbcmfQddedyqTOVhJuXe4t0uNmeIhH5WuN5mLPvfi1L5k3jixJbOV6mXPV4ARqbxJLFmoUPT0DP21wi4sAGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sven\\Desktop\\2DAW\\aa2dwes\\dwes-aa2\\bookAPI\\bookAPI.csproj",
+  "projectFilePath": "C:\\Users\\Sven\\Desktop\\aadews2_final\\mari\\dwes-aa2\\bookapi\\bookAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sven\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

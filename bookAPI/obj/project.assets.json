@@ -2176,11 +2176,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sven\\Desktop\\2DAW\\aa2dwes\\dwes-aa2\\bookAPI\\bookAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Sven\\Desktop\\aadews2_final\\mari\\dwes-aa2\\bookapi\\bookAPI.csproj",
       "projectName": "bookAPI",
-      "projectPath": "C:\\Users\\Sven\\Desktop\\2DAW\\aa2dwes\\dwes-aa2\\bookAPI\\bookAPI.csproj",
+      "projectPath": "C:\\Users\\Sven\\Desktop\\aadews2_final\\mari\\dwes-aa2\\bookapi\\bookAPI.csproj",
       "packagesPath": "C:\\Users\\Sven\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sven\\Desktop\\2DAW\\aa2dwes\\dwes-aa2\\bookAPI\\obj\\",
+      "outputPath": "C:\\Users\\Sven\\Desktop\\aadews2_final\\mari\\dwes-aa2\\bookapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sven\\AppData\\Roaming\\NuGet\\NuGet.Config"

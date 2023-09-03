@@ -1,13 +1,12 @@
 
 using bookAPI.Infrastructure.Models;
 
-namespace bookAPI.Infrastructure.Services
+namespace bookAPI.Infrastructure.Service
 {
     public interface IEmployeeService
     {
-        List<EmployeeRepository> GetEmployees(string? name, string? employeeEmail);
+        public List<EmployeeRepository> GetEmployees(string? name, string? employeeEmail);
 
     }
-
 }
 

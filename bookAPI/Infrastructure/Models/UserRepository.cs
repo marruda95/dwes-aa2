@@ -12,6 +12,5 @@ namespace bookAPI.Infrastructure.Models
         public string Password {get; set;}
         public DateTime SignupDate {get; set;}
         public bool HasDiscount {get; set;}
-        public List<BookRepository> BookList {get; set;}
     }
 }

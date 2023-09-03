@@ -1,6 +1,6 @@
 ﻿using bookAPI.Infrastructure.Models;
 
-namespace bookAPI.Infrastructure.Database.Data
+namespace bookAPI.Infrastructure.Data
 {
     public interface IDataBaseService
     {
@@ -11,17 +11,18 @@ namespace bookAPI.Infrastructure.Database.Data
         List<UserRepository> GetUsersDb();
         bool AddUserDb(UserRepository user);
         UserRepository GetSingleUserDb(int id);
-        UserRepository UpdateUserDb(int id, UserRepository user);
+        bool UpdateUserDb(int id, UserRepository user);
         bool DeleteUserDb(int id);
+
         bool OrderBook(int bookId, int userId);
         bool ReturnBook(int bookId, int userId);
         
 
         //Book
-        bool AddBookDb(int employeeId, BookRepository book);
-        List<BookRepository> GetBooksUserDb(int employeeId, int userId);        
-        bool DeleteBookDb(int employeeId, int idBook);
-        BookRepository UpdateBookDb(int employeeId, int bookId, BookRepository book);
+        bool AddBookDb(BookRepository book);
+        List<BookRepository> GetBooksUserDb(int userId);        
+        bool DeleteBookDb(int idBook);
+        bool UpdateBookDb(int bookId, BookRepository book);
         List<BookRepository> GetAllBooksDb();
 
     }

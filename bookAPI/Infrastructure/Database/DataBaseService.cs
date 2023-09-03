@@ -1,8 +1,8 @@
 ﻿using bookAPI.Infrastructure.Models;
 using bookAPI.Infrastructre.Context;
-using bookAPI.Infrastructure.Services;
+using bookAPI.Infrastructure.Data;
 
-namespace bookAPI.Infrastructure.Database.Data
+namespace bookAPI.Infrastructure.Database
 {
     public class DataBaseService : IDataBaseService
     {
@@ -81,6 +81,7 @@ namespace bookAPI.Infrastructure.Database.Data
                 }
                 else
                 {
+                    _dataContext.Remove(deleteUser);
                     _dataContext.SaveChanges();
                     return true;
                 }
@@ -115,7 +116,8 @@ namespace bookAPI.Infrastructure.Database.Data
         {
             try
             {
-                return _dataContext.Users.ToList();
+                var users = _dataContext.Users.ToList();
+                return users;
             }
             catch (Exception ex)
             {
@@ -123,60 +125,110 @@ namespace bookAPI.Infrastructure.Database.Data
                 return new List<UserRepository>();
             }
         }
-        public UserRepository UpdateUserDb(int id, UserRepository user)
+        public bool UpdateUserDb(int id, UserRepository user)
     
         {
             try
             {
                 UserRepository updateUser = _dataContext.Users?.Where(e => e.Id == id).FirstOrDefault();
                 UserRepository updateUserEmail = _dataContext.Users?.Where(e => e.Email == user.Email).FirstOrDefault();
-                var incorrrectEmail = user.Email.Contains("@user.com");
+                var incorrrectEmail = user.Email.Contains("@employee.com");
 
                 if (updateUser.Id == null || updateUserEmail != null && updateUserEmail.Id != updateUser.Id)
                 {
-                    return new UserRepository();
+                    return false;
                 }
                 else if (incorrrectEmail)
                 {
-                    return new UserRepository();
+                    return false;
                 }
                 else
                 {
                     updateUser.Id = id;
                     updateUser.Name = user.Name;
                     updateUser.Email = user.Email;
-                    updateUser.Password = user.Email;
+                    updateUser.Password = user.Password;
                     updateUser.SignupDate = user.SignupDate;
                     updateUser.HasDiscount = user.HasDiscount;
-                    updateUser.BookList = user.BookList;
 
                     _dataContext.SaveChanges();
-                    return updateUser;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex.Message);
-                return new UserRepository();
+                return false;
             }
         }
 
         public bool OrderBook(int bookId, int userId){
-            return true;
+            
+            var book = _dataContext.Books?.Where(e => e.Id == bookId).FirstOrDefault();
+            var user = _dataContext.Users?.Where(e => e.Id == userId).FirstOrDefault();
+
+
+            if (book == null || user == null || book.IsInStock == false || book.Stock < 1)
+            {
+                return false;
+            }
+            else
+            {
+                var order = new OrderRepository { BookId= bookId, UserId = userId };
+                _dataContext.Orders.Add(order);
+
+                book.Stock = book.Stock - 1;
+                if (book.Stock < 1)
+                {
+                    book.IsInStock = false;
+                }
+                _dataContext.SaveChanges();
+                return true;
+                  
+            }
         }
+
         public bool ReturnBook(int bookId, int userId){
-            return true;
+
+            var book = _dataContext.Books?.Where(e => e.Id == bookId).FirstOrDefault();
+            var user = _dataContext.Users?.Where(e => e.Id == userId).FirstOrDefault();
+
+            if (book == null || user == null || book.IsInStock == false || book.Stock < 1)
+            {
+                return false;
+            }
+            else
+            {
+                var order = _dataContext.Orders?.Where(e => e.UserId == bookId && e.UserId == userId).FirstOrDefault();
+
+                if (order == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    _dataContext.Orders.Remove(order);
+
+                    book.Stock = book.Stock + 1;
+                    if (book.Stock > 0)
+                    {
+                        book.IsInStock = true;
+                    }
+                    _dataContext.SaveChanges();
+                    return true;
+                }
+            }
         }
 
         //Book
-        public bool AddBookDb(int employeeId, BookRepository newBook)
+        public bool AddBookDb(BookRepository newBook)
         {
             try
             {
-                var employeeExists = _dataContext.Employees?.Where(x => x.Id == employeeId).FirstOrDefault();
+                //var employeeExists = _dataContext.Employees?.Where(x => x.Id == employeeId).FirstOrDefault();
                 var bookExists = _dataContext.Books?.Where(x => x.Id == newBook.Id).FirstOrDefault();
                 
-                if (employeeExists == null || bookExists.Name == newBook.Name)
+                if  (bookExists != null && bookExists.Name == newBook.Name) // chekear que el libro que se mete no esta repetido
                 {
                     return false;
                 }
@@ -185,7 +237,7 @@ namespace bookAPI.Infrastructure.Database.Data
                     var book = new BookRepository();
                     book.Name = newBook.Name;
                     book.Genre = newBook.Genre;
-                    book.Stock = 10; 
+                    book.Stock = newBook.Stock; 
                     book.Author = newBook.Author;
                     book.Price = newBook.Price;
                     book.IsInStock = true; 
@@ -205,22 +257,40 @@ namespace bookAPI.Infrastructure.Database.Data
             }
         }
 
-        public List<BookRepository> GetBooksUserDb(int employeeId, int userId)
+        public List<BookRepository> GetBooksUserDb(int userId)
         {
             
             try
-            
             {
-                EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
-                var correctEmail = employee.Email.Contains("@employee.com");
+                //EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
+                //var correctEmail = employee.Email.Contains("@employee.com");
+                var userBookList = _dataContext.Users.Where(e => e.Id == userId).FirstOrDefault();
+                var userBooks = _dataContext.Orders.Where(e => e.UserId == userId).ToList();
 
-                if (correctEmail == false){
+
+
+                if (userBookList == null || userBooks.Count < 1)
+                {
                     return new List<BookRepository>();
-                } else {
-                    var userBookList = _dataContext.Users.Where(e => e.Id == userId).FirstOrDefault();
-                    return userBookList.BookList;
-                    
                 }
+                else
+                {
+                    var list = new List<BookRepository>();
+                    foreach (var item in userBooks)
+                    {
+                        var book = _dataContext.Books.Where(e => e.Id == item.BookId).FirstOrDefault();
+                        if(book != null)
+                        {
+                            list.Add(book);
+                        }
+                        else
+                        {
+                            return new List<BookRepository>();
+                        }
+                    }
+                    return list;
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -229,24 +299,30 @@ namespace bookAPI.Infrastructure.Database.Data
             }
         }
 
-        public bool DeleteBookDb(int employeeId, int bookId)
+        public bool DeleteBookDb(int bookId)
         {
             try
             {
-                EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
-                var correctEmail = employee.Email.Contains("@employee.com");
+                //EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
+                //var correctEmail = employee.Email.Contains("@employee.com");
                 var bookExists = _dataContext.Books.Where(e => e.Id == bookId).FirstOrDefault();
                
-                if (correctEmail == false || bookExists.Id == null){
+                if (bookExists == null)
+                {
                     return false;
-                }else {
+                } 
+                else 
+                {
+                    var orders = _dataContext.Orders.Where(e => e.BookId == bookId).ToList();
+                    foreach (var item in orders)
+                    {
+                        _dataContext.Orders.Remove(item);
+                    }
+
                     bookExists.IsRemoved = true;
                     _dataContext.SaveChanges();
                     return true;
                 }
-             
-                
-                
             }
             catch (Exception ex)
             {
@@ -255,29 +331,36 @@ namespace bookAPI.Infrastructure.Database.Data
             }
         }
 
-        public BookRepository UpdateBookDb(int employeeId, int bookId, BookRepository book)
+        public bool UpdateBookDb(int bookId, BookRepository book)
         {
             try
             {
-                EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
-                var correctEmail = employee.Email.Contains("@employee.com");
+                //EmployeeRepository employee = _dataContext.Employees?.Where(e => e.Id == employeeId).FirstOrDefault();
+                //var correctEmail = employee.Email.Contains("@employee.com");
                 BookRepository updateBook = _dataContext.Books?.Where(e => e.Id == bookId).FirstOrDefault();
 
-                if (updateBook.Id == null || correctEmail == true)
+                if (updateBook == null)
                 {
-                    return new BookRepository();
+                    return false;
                 }
                 else
                 {
-                    updateBook.Stock = book.Stock;
+                    updateBook.Id = bookId;
+                    updateBook.Name = book.Name;
+                    updateBook.Author = book.Author;    
+                    updateBook.Genre= book.Genre;
+                    updateBook.Price= book.Price;
+                    updateBook.DatePublished = book.DatePublished;
+                    updateBook.IsInStock= book.IsInStock;
+                    updateBook.Stock= book.Stock;
                     _dataContext.SaveChanges();
-                    return updateBook;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex.Message);
-                return new BookRepository();
+                return false;
             }
         }
 

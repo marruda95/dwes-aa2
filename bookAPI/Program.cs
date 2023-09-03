@@ -1,7 +1,9 @@
 using bookAPI;
+using bookAPI._1_Presentation.Handler;
 using bookAPI.Infrastructre.Context;
-using bookAPI.Infrastructure.Database.Data;
-using bookAPI.Infrastructure.Services;
+using bookAPI.Infrastructure.Data;
+using bookAPI.Infrastructure.Database;
+using bookAPI.Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -14,6 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IDataBaseService, DataBaseService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -47,18 +51,18 @@ builder.Services.AddSwaggerGen(c =>
             });
 });
 
-// //AUTH
-// builder.Services.AddAuthentication("BasicAuthentication")
-//     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+//AUTH
+builder.Services.AddAuthentication("BasicAuthentication")
+     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 //SQL
 builder.Services.AddDbContext<DataContext>(options =>
           options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // NLOG
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-builder.Logging.ClearProviders();
-builder.Host.UseNLog();
+//var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+//builder.Logging.ClearProviders();
+//builder.Host.UseNLog();
 
 var app = builder.Build();
 
@@ -76,6 +80,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
